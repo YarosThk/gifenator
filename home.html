@@ -4,14 +4,58 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>Search</title>
 </head>
 <body>
-    <h1>Welcome to fake GIF seeker</h1>
-    <form action="">
-        <input id="queryField" type="text" required>
-        <button id="getGif" type="button">GIFme</button>
-    </form>
+
+    <div class="navbar" id="myNavbar">
+        <a href="home.html"> HOME </a>
+        <a href="trending.html"> TRENDING </a>
+        <a href=""> ABOUT </a>
+        <a href="javascript:void(0);" class="icon" onclick="unfoldNavbar()">
+            <i class="fa fa-bars"></i>
+        </a>
+    </div>
+
+    <div class = "content">
+
+        <div class = "form_container">
+            <form action="">
+                <input class = "gif-keywords" id="queryField" type="text" required>
+                <button class = "search-button" id="getGif" type="button"><span class="material-icons">search</span></button>
+            </form>
+        </div>
+        
+
+        <div class="queried-gifs">
+            <div class="gif-container">
+                <button class = "arrow-left"><span class="material-icons">arrow_back_ios</span></button>
+                <div class="gif-carousel">
+                    <div class="carousel">
+
+                    </div>
+                </div>
+                <button class = "arrow-right"><span class="material-icons">arrow_forward_ios</span></button>
+            </div>
+
+        </div>
+    </div>
 </body>
-<script src="app.js"></script>
+
+<script src="search.js"></script>
+<script>
+
+    function unfoldNavbar(){
+        let x = document.getElementById("myNavbar");
+        if (x.className === "navbar") {
+            x.className += " responsive";
+        } else {
+            x.className = "navbar";
+        }
+    }
+
+</script>
 </html>

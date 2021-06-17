@@ -1,0 +1,256 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300&display=swap');
+
+:root{
+    --duration: 450ms;
+    --gifWidth: 294px;
+    --gifHeight: (var(--gifWidth) / (16/9));
+    --iconSize: 50px;
+    --growFactor: 1.5; /*1.5 times the original size;*/
+    --moveLeft: -(var(--gifWidth) * (var(--growFactor) - 1) / 2);
+    --moveRight: var(--gifWidth) * (var(--growFactor) - 1);
+}
+
+*{
+    box-sizing: border-box;
+}
+
+html{
+    font-family: 'Lato', sans-serif;
+    font-size: 16px;
+    height: 100%;
+}
+
+body{
+    background-color: #232931;
+}
+
+.navbar{
+    background-color: #393e46;
+    overflow: hidden;
+}
+
+.navbar a{
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.navbar a:hover {
+  background-color: #4ecca3;
+  color: black;
+}
+
+.navbar .icon{
+    display: none;
+}
+ 
+.content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form_container{
+    margin: 50px;
+    width: 90%;
+    text-align: center;
+}
+
+.gif-keywords{
+    padding: 0.4rem;
+    height: 3rem;
+    width: 70vw;
+    max-width: 18rem;
+    border: none;
+    outline: none;
+    border-bottom: 2px solid #4ecca3;
+    background-color: rgba(255, 179, 179, 0);
+    font-size: 1.5rem;
+    color: snow;
+}
+
+.gif-keywords:focus{
+    outline: 1px solid #4ecca3;
+}
+
+.search-button{
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    vertical-align: middle;
+    border-radius: 0.3em;
+    font-size: 1.5rem;
+    width: 1.5em;
+    height: 1.5em;
+    cursor: pointer;
+    background-color: #4ecca3;
+}
+
+.queried-gifs{
+    width: 90%;
+    margin:50px auto;
+    /* background-color: rgb(50, 194, 204); */
+}
+
+.gif-container{
+    overflow: scroll;
+    position: relative;
+}
+
+.queried-gifs .gif-container .arrow-left,
+.queried-gifs .gif-container .arrow-right{
+  position: absolute;
+  background-color: rgba(2, 2, 2, 0.454);
+  top: 25%;
+  border: none;
+  color: aliceblue;
+  height: 50%;
+  cursor: pointer;
+  z-index: 500;
+  transition: .2s ease all;
+}
+
+.queried-gifs .gif-container .arrow-left:hover,
+.queried-gifs .gif-container .arrow-right:hover{
+  background-color: rgba(12, 12, 12, 0.897);
+}
+
+.queried-gifs .gif-container .arrow-left{
+  left: 0;
+}
+
+.queried-gifs .gif-container .arrow-right{
+  right: 0;
+}
+
+
+/* ---------------------------GIF CAROUSEL------------------------------------ */
+
+.queried-gifs .gif-container .gif-carousel{
+  width: 100%;
+  padding: 20px 0;
+  overflow: hidden;
+  /* background-color: darkseagreen; */
+  scroll-behavior: smooth;
+}
+
+.queried-gifs .gif-container .gif-carousel .carousel{
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.queried-gifs .gif-container .gif-carousel .carousel .gif{
+  margin: 0px 3px 0px 3px;
+  display: flex;
+  min-width: 25%;
+  /* border: 3px solid orange; */
+  transition: .3s ease all;
+  box-shadow: 5px 5px 10px rgba(7, 7, 7, 0.392);
+}
+
+.queried-gifs .gif-container .gif-carousel .carousel .gif:hover{
+  transform: scale(1.2);
+  transform-origin: center;
+}
+
+.queried-gifs .gif-container .gif-carousel .carousel .gif img{
+  width: 100%;
+  vertical-align:top;
+  align-self: center;
+  border-radius: 0.4rem;
+}
+/* ------------------------TRENDING GIFS-------------------------------------- */
+
+.gif-grid{
+  width: 80%;
+  margin: 100px auto;
+  line-height: 0;
+
+  -webkit-column-count: 3;
+  -webkit-column-gap: 0px;
+  -moz-column-count: 5;
+  -moz-column-gap: 0px;
+  column-count: 3;
+  column-gap: 8px;
+}
+
+.gif-grid .gif__img{
+  margin-bottom: 8px;
+  border-radius: 0.4rem;
+  width: 100% !important;
+  height: auto !important;
+  transition: 0.2s ease all;
+}
+
+.gif-grid .gif__img:hover{
+  transform: scale(1.1);
+  transform-origin: center;
+}
+
+/* --------------------------------------------------------------------------- */
+
+
+/* --------------------------------------------------------------------------- */
+
+/* When the screen is less than 400 pixels wide, hide all links, except for the first one ("Search"). So the link that contains should open and close the topnav (.icon) */
+@media screen and (max-width: 400px) {
+    .navbar a:not(:first-child) {display: none;}
+    .navbar a.icon {
+      float: right;
+      display: block;
+    }
+}
+
+/* The "responsive" class is added to the topnav with JavaScript when the user clicks on the icon. This class makes the topnav look good on small screens (display the links vertically instead of horizontally) */
+@media screen and (max-width: 400px) {
+  .navbar.responsive {position: relative;}
+  .navbar.responsive a.icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .navbar.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .gif-grid{
+    width: 80%;
+    margin: 50px auto;
+    line-height: 0;
+
+    -webkit-column-count: 2;
+    -webkit-column-gap: 8px;
+    -moz-column-count: 2;
+    -moz-column-gap: 8px;
+    column-count: 2;
+    column-gap: 8px;
+  }
+}
+
+@media screen and (max-width: 300px) {
+  .gif-grid{
+    width: 80%;
+    margin: 50px auto;
+    line-height: 0;
+
+    -webkit-column-count: 1;
+    -webkit-column-gap: 8px;
+    -moz-column-count: 1;
+    -moz-column-gap: 8px;
+    column-count: 1;
+    column-gap: 8px;
+  }
+
+  .form_container{
+    width: 100%;
+  }
+
+}
