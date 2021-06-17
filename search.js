@@ -16,7 +16,7 @@ searchButton.addEventListener("click", (e) => {
 
 
 function getGifs(q){
-    let searchRequest = `https://api.giphy.com/v1/gifs/search?api_key=${apiKey}&limit=15&lang=en&q=${q}`
+    let searchRequest = `https://api.giphy.com/v1/gifs/search?api_key=${apiKey}&limit=25&lang=en&q=${q}`
     fetch(searchRequest, {mode : "cors"})
         .then(function (response){
             console.log("in the response")

@@ -104,19 +104,25 @@ body{
 .queried-gifs .gif-container .arrow-left,
 .queried-gifs .gif-container .arrow-right{
   position: absolute;
-  background-color: rgba(2, 2, 2, 0.454);
-  top: 25%;
+  top: 0px;
   border: none;
   color: aliceblue;
-  height: 50%;
+  height: 100%;
+  width: 4em;
   cursor: pointer;
   z-index: 500;
   transition: .2s ease all;
 }
+.queried-gifs .gif-container .arrow-left{
+  background: linear-gradient(99deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.10828081232492992) 100%);
+}
+.queried-gifs .gif-container .arrow-right{
+  background: linear-gradient(248deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.10828081232492992) 100%);
+}
 
 .queried-gifs .gif-container .arrow-left:hover,
 .queried-gifs .gif-container .arrow-right:hover{
-  background-color: rgba(12, 12, 12, 0.897);
+  background-color: rgba(12, 12, 12, 0.281);
 }
 
 .queried-gifs .gif-container .arrow-left{
@@ -150,6 +156,7 @@ body{
   /* border: 3px solid orange; */
   transition: .3s ease all;
   box-shadow: 5px 5px 10px rgba(7, 7, 7, 0.392);
+  background-color: rgb(35, 41, 49);
 }
 
 .queried-gifs .gif-container .gif-carousel .carousel .gif:hover{
@@ -159,7 +166,7 @@ body{
 
 .queried-gifs .gif-container .gif-carousel .carousel .gif img{
   width: 100%;
-  vertical-align:top;
+  vertical-align: top;
   align-self: center;
   border-radius: 0.4rem;
 }
@@ -253,4 +260,28 @@ body{
     width: 100%;
   }
 
+}
+
+@media screen and (max-width: 550px) {
+  .queried-gifs .gif-container .gif-carousel{
+    width: 100%;
+    padding: 20px 0;
+    overflow: hidden;
+    /* background-color: darkseagreen; */
+    scroll-behavior: smooth;
+  }
+
+  .queried-gifs .gif-container .gif-carousel .carousel .gif{
+      margin: 0px 3px 0px 3px;
+      min-width: 100%;
+      /* border: 3px solid orange; */
+      transition: .3s ease all;
+      box-shadow: none;
+  }
+
+  .queried-gifs .gif-container .gif-carousel .carousel .gif img{
+    width: 100%;
+
+    border-radius: 0.4rem;
+  }
 }
