@@ -1,43 +1,33 @@
-const apiKey = "5X2j8Y2uf6f8BIRK5TFQr3hdLTDwAS7k"
-const body = document.querySelector("body")
-const gifGrid = document.querySelector(".gif-grid")
+import { getTrendingGifs, hasMoreGifs } from "./api_calls.js"
+import { renderGrid } from "./display_controls.js"
 
-window.addEventListener("load", () => {
-    console.log("DISPLAYED WHEN PAGE LOADED")
-    getTrendingGifs()
+let totalGifCount = 25 //start at 25 because window on load request 25 gifs. Later we add 25 with each request
+let maxGifs = 0 //represents the total amount of GIFS existent in trending API query
+
+window.addEventListener("load", async () => {
+    try {
+        const data = await getTrendingGifs()
+        maxGifs = data.pagination.total_count
+        renderGrid(data.data)
+    }catch(err){
+        console.log(err)
+    }
 })
 
+window.addEventListener("scroll", async () => {
+    const {
+        scrollTop,
+        scrollHeight,
+        clientHeight
+    } = document.documentElement;
 
-function getTrendingGifs(){
-    console.log("performing a request")
-    let trendingQuery = `https://api.giphy.com/v1/gifs/trending?api_key=${apiKey}&limit=25&rating=r`;
-    fetch(trendingQuery, { mode: "cors" })
-        .then(function(response){
-            response.json() //this returns a Promise that resolves to JS Object. Since it's a promise we need then or another async function.
-                .then(data => {
-                    console.log(data.data)
-                    renderGrid(data.data)
-                })
-                .catch(e => console.log("Error parsing JSON: ", e))
-
-        })
-        .catch(function (e) {
-            console.log("IN THE ERROR ", e)
-        })
-}
-
-function renderGrid(d){
-    d.forEach(gif => {
-        let objPath = gif.images.fixed_width.webp
-        let gifMedia = gifElement(objPath, "gif__img")
-        gifGrid.appendChild(gifMedia)
-    });
-}
-
-
-function gifElement(img_link, img_class) {
-    let img = document.createElement("img")
-    img.src = img_link
-    img.classList.add(img_class)
-    return img
-}
+    if (scrollTop + clientHeight >= scrollHeight - 5 && hasMoreGifs(totalGifCount, maxGifs)){
+        try {
+            const data = await getTrendingGifs()
+            totalGifCount+=25
+            renderGrid(data.data)
+        } catch (err) {
+            console.log(err)
+        }
+    }
+})

@@ -162,6 +162,7 @@ body{
 .queried-gifs .gif-container .gif-carousel .carousel .gif:hover{
   transform: scale(1.2);
   transform-origin: center;
+  transition-delay: 0.3s;
 }
 
 .queried-gifs .gif-container .gif-carousel .carousel .gif img{
@@ -190,12 +191,13 @@ body{
   border-radius: 0.4rem;
   width: 100% !important;
   height: auto !important;
-  transition: 0.2s ease all;
+  transition: 0.3s ease all;
 }
 
 .gif-grid .gif__img:hover{
   transform: scale(1.1);
   transform-origin: center;
+  transition-delay: 0.3s;
 }
 
 /* --------------------------------------------------------------------------- */

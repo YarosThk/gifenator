@@ -29,7 +29,9 @@
 
 </body>
 
-<script src="trending.js"></script>
+<script type="module" src="api_calls.js"></script> <!-- Uncaught SyntaxError: Cannot use import statement outside a module, so we use type = "module" -->
+<script type="module" src="display_controls.js"></script>
+<script type="module" src="trending.js"></script>
 <script>
 
     function unfoldNavbar() {
