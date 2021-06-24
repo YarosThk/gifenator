@@ -15,7 +15,7 @@ function renderGrid(d) {
 function renderGif(d) {
     d.forEach(gif => {
         let gifBox = createDiv("gif")
-        let objPath = gif.images.fixed_height.webp
+        let objPath = gif.images.fixed_width.webp //fixed with is 200
         let gifMedia = gifElement(objPath, "gif__img")
 
         gifBox.appendChild(gifMedia)

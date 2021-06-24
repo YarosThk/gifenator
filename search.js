@@ -4,6 +4,7 @@ import { renderGif } from "./display_controls.js"
 const searchButton = document.querySelector("#getGif")
 const queryField = document.querySelector("#queryField")
 const carousleContainer = document.querySelector(".gif-carousel")
+const innerCarousel = document.querySelector(".carousel")
 const arrowLeft = document.querySelector(".arrow-left")
 const arrowRight = document.querySelector(".arrow-right")
 
@@ -19,10 +20,11 @@ searchButton.addEventListener("click", async (e) => {
 })
 
 arrowRight.addEventListener("click", () => {
+    console.log(carousleContainer.offsetWidth)
     carousleContainer.scrollLeft += carousleContainer.offsetWidth
-
 })
 
 arrowLeft.addEventListener("click", () => {
+    console.log(innerCarousel.offsetWidth)
     carousleContainer.scrollLeft -= carousleContainer.offsetWidth
 })

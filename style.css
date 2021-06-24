@@ -1,27 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300&display=swap');
 
-:root{
-    --duration: 450ms;
-    --gifWidth: 294px;
-    --gifHeight: (var(--gifWidth) / (16/9));
-    --iconSize: 50px;
-    --growFactor: 1.5; /*1.5 times the original size;*/
-    --moveLeft: -(var(--gifWidth) * (var(--growFactor) - 1) / 2);
-    --moveRight: var(--gifWidth) * (var(--growFactor) - 1);
-}
-
 *{
-    box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 html{
     font-family: 'Lato', sans-serif;
     font-size: 16px;
     height: 100%;
+    scroll-behavior: smooth;
 }
 
 body{
-    background-color: #232931;
+    background-color:#232931;
 }
 
 .navbar{
@@ -36,7 +29,7 @@ body{
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
-  font-size: 17px;
+  font-size: 1.1rem;
 }
 
 .navbar a:hover {
@@ -47,7 +40,27 @@ body{
 .navbar .icon{
     display: none;
 }
- 
+
+.button-go-top{
+  display: none;
+  justify-content: center;
+  align-items: center;
+  vertical-align: middle;
+  position: fixed;
+  font-size: 1rem;
+  bottom: 20px;
+  left: 20px;
+  background-color: #393e46;
+  color: #f2f2f2;
+  border: none;
+  cursor: pointer;
+}
+
+.button-go-top:hover{
+  background-color: #4ecca3;
+  color: black;
+}
+
 .content{
     display: flex;
     flex-direction: column;
@@ -93,7 +106,6 @@ body{
 .queried-gifs{
     width: 90%;
     margin:50px auto;
-    /* background-color: rgb(50, 194, 204); */
 }
 
 .gif-container{
@@ -140,7 +152,6 @@ body{
   width: 100%;
   padding: 20px 0;
   overflow: hidden;
-  /* background-color: darkseagreen; */
   scroll-behavior: smooth;
 }
 
@@ -150,10 +161,8 @@ body{
 }
 
 .queried-gifs .gif-container .gif-carousel .carousel .gif{
-  margin: 0px 3px 0px 3px;
   display: flex;
   min-width: 25%;
-  /* border: 3px solid orange; */
   transition: .3s ease all;
   box-shadow: 5px 5px 10px rgba(7, 7, 7, 0.392);
   background-color: rgb(35, 41, 49);
@@ -203,7 +212,26 @@ body{
 /* --------------------------------------------------------------------------- */
 
 
-/* --------------------------------------------------------------------------- */
+/* -----------------------------MEDIA QUERIES--------------------------------- */
+
+@media screen and (max-width: 300px) {
+  .gif-grid{
+    width: 80%;
+    margin: 50px auto;
+    line-height: 0;
+
+    -webkit-column-count: 1;
+    -webkit-column-gap: 8px;
+    -moz-column-count: 1;
+    -moz-column-gap: 8px;
+    column-count: 1;
+    column-gap: 8px;
+  }
+
+  .form_container{
+    width: 100%;
+  }
+}
 
 /* When the screen is less than 400 pixels wide, hide all links, except for the first one ("Search"). So the link that contains should open and close the topnav (.icon) */
 @media screen and (max-width: 400px) {
@@ -230,6 +258,29 @@ body{
 }
 
 @media screen and (max-width: 550px) {
+  .button-go-top{
+    transform: rotate(-90deg);
+    transform-origin: left top;
+  }
+  .queried-gifs .gif-container .gif-carousel{
+    width: 100%;
+    padding: 20px 0;
+    overflow: hidden;
+    /* background-color: darkseagreen; */
+    scroll-behavior: smooth;
+  }
+
+  .queried-gifs .gif-container .gif-carousel .carousel .gif{
+      min-width: 100%;
+      transition: .3s ease all;
+      box-shadow: none;
+  }
+
+  .queried-gifs .gif-container .gif-carousel .carousel .gif img{
+    width: 100%;
+    border-radius: 0.4rem;
+  }
+
   .gif-grid{
     width: 80%;
     margin: 50px auto;
@@ -244,46 +295,9 @@ body{
   }
 }
 
-@media screen and (max-width: 300px) {
-  .gif-grid{
-    width: 80%;
-    margin: 50px auto;
-    line-height: 0;
-
-    -webkit-column-count: 1;
-    -webkit-column-gap: 8px;
-    -moz-column-count: 1;
-    -moz-column-gap: 8px;
-    column-count: 1;
-    column-gap: 8px;
-  }
-
-  .form_container{
-    width: 100%;
-  }
-
-}
-
-@media screen and (max-width: 550px) {
-  .queried-gifs .gif-container .gif-carousel{
-    width: 100%;
-    padding: 20px 0;
-    overflow: hidden;
-    /* background-color: darkseagreen; */
-    scroll-behavior: smooth;
-  }
-
-  .queried-gifs .gif-container .gif-carousel .carousel .gif{
-      margin: 0px 3px 0px 3px;
-      min-width: 100%;
-      /* border: 3px solid orange; */
-      transition: .3s ease all;
-      box-shadow: none;
-  }
-
-  .queried-gifs .gif-container .gif-carousel .carousel .gif img{
-    width: 100%;
-
-    border-radius: 0.4rem;
+@media screen and (max-width: 1024px) {
+  .button-go-top{
+    left: 0px;
+    bottom: 20px;
   }
 }
