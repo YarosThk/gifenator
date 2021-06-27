@@ -145,7 +145,24 @@ body{
   right: 0;
 }
 
+.empty-query-indicator{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: auto;
+  align-items: center;
+}
 
+.empty-query-indicator span{
+  font-size: 10rem;
+  color: white;
+}
+
+.empty-query-indicator p{
+  font-size: 2rem;
+  color: white;
+}
 /* ---------------------------GIF CAROUSEL------------------------------------ */
 
 .queried-gifs .gif-container .gif-carousel{

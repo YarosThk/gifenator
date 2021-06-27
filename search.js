@@ -1,5 +1,5 @@
 import { getGifs } from "./api_calls.js"
-import { renderGif } from "./display_controls.js"
+import { renderGif, clearCarousel, removeEmptyIndicator } from "./display_controls.js"
 
 const searchButton = document.querySelector("#getGif")
 const queryField = document.querySelector("#queryField")
@@ -11,20 +11,20 @@ const arrowRight = document.querySelector(".arrow-right")
 searchButton.addEventListener("click", async (e) => {
     // e.preventDefault() //don't need it because getGif is a type button not submit
     let queriedText = queryField.value
+    clearCarousel()
+    removeEmptyIndicator()
     try {
         let returnedGifs = await getGifs(queriedText)
         renderGif(returnedGifs)
     } catch (err) {
-        console.log(err)
+        console.log("Error in search event listener ", err)
     }
 })
 
 arrowRight.addEventListener("click", () => {
-    console.log(carousleContainer.offsetWidth)
     carousleContainer.scrollLeft += carousleContainer.offsetWidth
 })
 
 arrowLeft.addEventListener("click", () => {
-    console.log(innerCarousel.offsetWidth)
     carousleContainer.scrollLeft -= carousleContainer.offsetWidth
 })

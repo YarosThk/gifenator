@@ -1,4 +1,6 @@
-const gifCarousel = document.querySelector(".carousel")
+const queriedGifs = document.querySelector(".queried-gifs")
+const gifContainer = document.querySelector(".gif-container")
+const carousel = document.querySelector(".carousel")
 const gifGrid = document.querySelector(".gif-grid")
 
 function renderGrid(d) {
@@ -13,14 +15,20 @@ function renderGrid(d) {
 }
 
 function renderGif(d) {
-    d.forEach(gif => {
-        let gifBox = createDiv("gif")
-        let objPath = gif.images.fixed_width.webp //fixed with is 200
-        let gifMedia = gifElement(objPath, "gif__img")
+    if(d.length > 0){
+        gifContainer.style.display = ""
+        d.forEach(gif => {
+            let gifBox = createDiv("gif")
+            let objPath = gif.images.fixed_width.webp //fixed with is 200
+            let gifMedia = gifElement(objPath, "gif__img")
 
-        gifBox.appendChild(gifMedia)
-        gifCarousel.appendChild(gifBox)
-    });
+            gifBox.appendChild(gifMedia)
+            carousel.appendChild(gifBox)
+        });
+    }else{
+        gifContainer.style.display = "none"
+        emptyIndicator()
+    }
 }
 
 function createDiv(div_class) {
@@ -36,4 +44,29 @@ function gifElement(img_link, img_class) {
     return img
 }
 
-export {renderGif, renderGrid}
+function emptyIndicator(){
+    let empty_div = createDiv("empty-query-indicator")
+    empty_div.innerHTML = `<span class="material-icons">
+                                    no_photography
+                            </span>
+                            <p>NO GIFS FOUND</p>`
+
+    queriedGifs.appendChild(empty_div)
+}
+
+function removeEmptyIndicator(){
+    if (document.querySelector(".empty-query-indicator")){
+        queriedGifs.removeChild(document.querySelector(".empty-query-indicator"))
+    }else{
+        return
+    }
+}
+
+function clearCarousel(){
+    if(carousel.hasChildNodes){
+        while(carousel.firstChild){
+            carousel.removeChild(carousel.firstChild)
+        }
+    }
+}
+export { renderGif, renderGrid, clearCarousel, removeEmptyIndicator}

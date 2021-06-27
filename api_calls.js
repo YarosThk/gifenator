@@ -1,35 +1,38 @@
-const apiKey = "5X2j8Y2uf6f8BIRK5TFQr3hdLTDwAS7k";
-let offsetPosition = 0 //with each query it will offset 25 GIFS
+import { API_KEY } from "./config.js"
 
 function hasMoreGifs(totalGifCount, maxCount) {
+    console.log("here here here")
     //returns true if it has more quotes, false otherwise. It compares totalGifCount 
     //with data.pagination.total_count from GIPHY JSON object.
     //can work more to make it more precise I think
     return totalGifCount < maxCount
 }
 
+function catchFetchErrors(response){
+    if(!response.ok){
+        //meaning the status code is not in successful range
+        throw Error(`Response status: ${response.status}`)
+    }
+    return response
+}
+
 async function getGifs(q) {
-    let searchUrl = `https://api.giphy.com/v1/gifs/search?api_key=${apiKey}&limit=25&lang=en&q=${q}`;
-    try{
-        const queriedGifs = await fetch(searchUrl, { mode: "cors" })
-        const data = await queriedGifs.json()
-        return data.data
-    }catch(err){
-        console.log(err)
-    }
+    let searchUrl = `https://api.giphy.com/v1/gifs/search?api_key=${API_KEY}&limit=25&lang=en&q=${q}`;
+    const queriedGifs = await fetch(searchUrl, { mode: "cors" })
+    catchFetchErrors(queriedGifs)
+    const data = await queriedGifs.json()
+    return data.data
 }
 
-async function getTrendingGifs() {
-    let trendingUrl = `https://api.giphy.com/v1/gifs/trending?api_key=${apiKey}&limit=25&rating=r&offset=${offsetPosition}`;
-    try {
-        const trendingQuery = await fetch(trendingUrl, { mode: "cors" })
-        const data = await trendingQuery.json()
-        offsetPosition +=25
-        return data
-
-    }catch (err) {
-        console.log(err)
-    }
+async function getTrendingGifs(offsetPosition) {
+    //need to add catch to nicely avoid errors
+    console.log(offsetPosition)
+    let trendingUrl = `https://api.giphy.com/v1/gifs/trending?api_key=${API_KEY}&limit=25&rating=r&offset=${offsetPosition}`;
+    const trendingQuery = await fetch(trendingUrl, { mode: "cors" })
+    catchFetchErrors(trendingQuery)
+    const data = await trendingQuery.json()
+    console.log(data)
+    return data
 }
 
-export { getGifs, getTrendingGifs, hasMoreGifs }
+export { getGifs, getTrendingGifs, hasMoreGifs, catchFetchErrors }
