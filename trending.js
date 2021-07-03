@@ -24,8 +24,6 @@ window.addEventListener("load", async () => {
 })
 
 window.addEventListener("scroll", async () => {
-    //scrollTop posiciones de scroll en la que estamos: returns the number of pixels an element's content is scrolled vertically
-    //scrollHeight: returns the entire height of an element in pixels
     const {
         scrollTop,
         scrollHeight,
