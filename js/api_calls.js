@@ -1,4 +1,4 @@
-import { API_KEY } from "./config.js"
+import { API_KEY } from "../config.js"
 
 function hasMoreGifs(totalGifCount, maxCount) {
     console.log("here here here")
