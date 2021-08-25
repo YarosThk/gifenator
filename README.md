@@ -26,3 +26,8 @@ git clone https://github.com/YarosThk/gifenator
 ```sh
 Run the app in Live Server mode in order to be able to make requests.
 ```
+
+### Screenshots
+![alt text](https://github.com/YarosThk/gifenator/blob/main/css/assets/search.png?raw=true)
+![alt text](https://github.com/YarosThk/gifenator/blob/main/css/assets/trending.png?raw=true)
+
