@@ -8,7 +8,7 @@ let maxGifs = 0 //represents the total amount of GIFS existent in trending API q
 
 scrollTopButton.addEventListener("click", () => {
     //this piece is from W3Schools
-    document.body.scrollTop = 0; // For Safari. But seems like Safari works without it as well.
+    document.body.scrollTop = 0; // For Safari
     document.documentElement.scrollTop = 0 // For Chrome, Firefox, IE and Opera
 })
 
@@ -16,7 +16,7 @@ window.addEventListener("load", async () => {
     try {
         const data = await getTrendingGifs(offsetPosition)
         offsetPosition += 25
-        maxGifs = data.pagination.total_count
+        maxGifs = data.pagination.total_count //set's maxGifs to total amount of gifs returned from API query.
         renderGrid(data.data)
     }catch(err){
         console.log(err)

@@ -4,6 +4,7 @@ const carousel = document.querySelector(".carousel")
 const gifGrid = document.querySelector(".gif-grid")
 
 function renderGrid(d) {
+    //responsible for creating a grid with all the gifst in Tranding
     if (typeof d === "undefined"){
         return;
     }
@@ -15,8 +16,9 @@ function renderGrid(d) {
 }
 
 function renderGif(d) {
+    //renders gifs for carousel container in search page
     if(d.length > 0){
-        gifContainer.style.display = ""
+        gifContainer.style.display = "" 
         d.forEach(gif => {
             let gifBox = createDiv("gif")
             let objPath = gif.images.fixed_width.webp //fixed with is 200
@@ -26,11 +28,12 @@ function renderGif(d) {
             carousel.appendChild(gifBox)
         });
     }else{
-        gifContainer.style.display = "none"
+        gifContainer.style.display = "none" //if no gifs found, do not display the gifcontainer
         emptyIndicator()
     }
 }
 
+//helper functions to create gif elements in a functional manner
 function createDiv(div_class) {
     const divElement = document.createElement("div")
     divElement.classList.add(div_class)

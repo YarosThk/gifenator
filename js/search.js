@@ -9,7 +9,6 @@ const arrowLeft = document.querySelector(".arrow-left")
 const arrowRight = document.querySelector(".arrow-right")
 
 searchButton.addEventListener("click", async (e) => {
-    // e.preventDefault() //don't need it because getGif is a type button not submit
     let queriedText = queryField.value
     clearCarousel()
     removeEmptyIndicator()
@@ -22,9 +21,13 @@ searchButton.addEventListener("click", async (e) => {
 })
 
 arrowRight.addEventListener("click", () => {
+    //Offsets a portion of gifs by the total width of the box that contains gifs. 
+    //e.g: carousel box contains 5 gifs, it offsets by this width
     carousleContainer.scrollLeft += carousleContainer.offsetWidth
 })
 
 arrowLeft.addEventListener("click", () => {
+        //Offsets a portion of gifs by the total width of the box that contains gifs. 
+    //e.g: carousel box contains 5 gifs, it offsets by this width
     carousleContainer.scrollLeft -= carousleContainer.offsetWidth
 })

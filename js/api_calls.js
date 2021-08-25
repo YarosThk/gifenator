@@ -1,9 +1,9 @@
 import { API_KEY } from "../config.js"
 
 function hasMoreGifs(totalGifCount, maxCount) {
-    console.log("here here here")
     //returns true if it has more quotes, false otherwise. It compares totalGifCount 
     //with data.pagination.total_count from GIPHY JSON object.
+    //if true, API contains more GIFS that can be loaded, else false.
     return totalGifCount < maxCount
 }
 
@@ -16,6 +16,7 @@ function catchFetchErrors(response){
 }
 
 async function getGifs(q) {
+    //async function to search gifs from search bar
     let searchUrl = `https://api.giphy.com/v1/gifs/search?api_key=${API_KEY}&limit=25&lang=en&q=${q}`;
     const queriedGifs = await fetch(searchUrl, { mode: "cors" })
     catchFetchErrors(queriedGifs)
@@ -24,6 +25,7 @@ async function getGifs(q) {
 }
 
 async function getTrendingGifs(offsetPosition) {
+    //async function to search gifs from trending page
     let trendingUrl = `https://api.giphy.com/v1/gifs/trending?api_key=${API_KEY}&limit=25&rating=r&offset=${offsetPosition}`;
     const trendingQuery = await fetch(trendingUrl, { mode: "cors" })
     catchFetchErrors(trendingQuery)
