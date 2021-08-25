@@ -22,7 +22,7 @@ To be able to run it you will need:
 ```sh
 git clone https://github.com/YarosThk/gifenator
 ```
-2. Clone the repo
+2. Use live server
 ```sh
 Run the app in Live Server mode in order to be able to make requests.
 ```
