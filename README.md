@@ -6,6 +6,7 @@
 * [About the Project](#about-the-project)
 * [Prerequisites](#prerequisites)
 * [Installation](#installation)
+* [Screenshots](#screenshots)
 
 
 ## About the project
